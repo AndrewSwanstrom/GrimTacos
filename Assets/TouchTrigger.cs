@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class TouchTrigger : MonoBehaviour
 {
+    public float jumpForce;
+
     Touch tap;
+    Rigidbody rb;
+
+    void Start() {
+        rb = GetComponent<Rigidbody>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,6 +25,9 @@ public class TouchTrigger : MonoBehaviour
 
             if (tap.phase == TouchPhase.Began) {
                 Debug.Log("Tap");
+
+                rb.velocity += jumpForce * Vector3.up;
+
             }
         }
     }
