@@ -5,6 +5,7 @@ using UnityEngine;
 public class TouchTrigger : MonoBehaviour
 {
     public float jumpForce;
+    bool isGrounded;
 
     Touch tap;
     Rigidbody rb;
@@ -22,13 +23,24 @@ public class TouchTrigger : MonoBehaviour
     void TapReader() {
         if (Input.touchCount > 0) {
             tap = Input.GetTouch(0);
+            int tapCount = 0;
 
-            if (tap.phase == TouchPhase.Began) {
+            if (tap.phase == TouchPhase.Began && tapCount < 2) {
                 Debug.Log("Tap");
+                isGrounded = false;
+                tapCount++;
 
                 rb.velocity += jumpForce * Vector3.up;
 
             }
+            else if (tap.phase == TouchPhase.Began && tapCount >= 2) {
+                Debug.Log("No more jump");
+            }
         }
+    }
+
+    void OnCollisionStay() {
+        isGrounded = true;
+        //Debug.Log("grounded"); <- working
     }
 }
