@@ -9,6 +9,8 @@ public class TouchTrigger : MonoBehaviour
     public int jumpCount;
     public float screenPercent;
 
+    public float speed = 10.0f;
+
     int isGrounded;
     float dragDistance;
     Vector3 firstTouch;
@@ -28,6 +30,8 @@ public class TouchTrigger : MonoBehaviour
     void Update()
     {
         TapReader();
+        rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x + 0.1f,0,speed) , rb.velocity.y, rb.velocity.z); // move right
+        //Vector3.ClampMagnitude(rb.velocity + Vector3.right, 10);
     }
 
     void OnCollisionStay(Collision collider) {
