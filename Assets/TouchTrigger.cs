@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchTrigger : MonoBehaviour
 {
-    TapReader tapScript;
+    TapReader tapScript = new TapReader();
     public float jumpForce;
     public float dashForce;
     public int jumpCount;
@@ -13,10 +13,8 @@ public class TouchTrigger : MonoBehaviour
     public float speed = 10.0f;
 
     Rigidbody rb;
-    Transform obj;
 
     void Start() {
-        tapScript = new TapReader();
         rb = GetComponent<Rigidbody>(); tapScript.rb = rb;
         jumpCount = jumpCount - 1;
 
@@ -33,16 +31,6 @@ public class TouchTrigger : MonoBehaviour
 
         rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x + 0.1f,0,speed) , rb.velocity.y, rb.velocity.z); // move right
         //Vector3.ClampMagnitude(rb.velocity + Vector3.right, 10);
-    }
-
-    void OnCollisionStay(Collision collider) {
-        if (collider.gameObject.tag == "Ground") {
-        tapScript.isGrounded = 0;
-        }
-        else if (collider.gameObject.tag == "Obstacle") {
-            obj = GetComponent<Transform>();
-            obj.position = Vector3.zero;
-        }
     }
 
 

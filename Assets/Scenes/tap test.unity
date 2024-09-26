@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 1304999319}
   - component: {fileID: 1304999324}
   - component: {fileID: 1304999323}
+  - component: {fileID: 1304999325}
   m_Layer: 0
   m_Name: temp player
   m_TagString: Player
@@ -688,6 +689,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1304999325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304999318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02cdb5c27fc14f4ab6d2eed8f960ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
 --- !u!1001 &1423932946
 PrefabInstance:
   m_ObjectHideFlags: 0
