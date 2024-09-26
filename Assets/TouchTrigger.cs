@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TouchTrigger : MonoBehaviour
 {
+    TapReader tapScript = new TapReader();
     public float jumpForce;
     public float dashForce;
     public int jumpCount;
@@ -11,66 +12,25 @@ public class TouchTrigger : MonoBehaviour
 
     public float speed = 10.0f;
 
-    int isGrounded;
-    float dragDistance;
-    Vector3 firstTouch;
-    Vector3 lastTouch;
-
-    Touch tap;
     Rigidbody rb;
-    Transform obj;
 
     void Start() {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); tapScript.rb = rb;
         jumpCount = jumpCount - 1;
-        dragDistance = Screen.height * screenPercent/100;
+
+        tapScript.dash = dashForce;
+        tapScript.force = jumpForce;
+        tapScript.count = jumpCount;
+        tapScript.dragDistance = Screen.height * screenPercent/100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        TapReader();
+        tapScript.Tap();
+
         rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x + 0.1f,0,speed) , rb.velocity.y, rb.velocity.z); // move right
         //Vector3.ClampMagnitude(rb.velocity + Vector3.right, 10);
-    }
-
-    void OnCollisionStay(Collision collider) {
-        if (collider.gameObject.tag == "Ground") {
-        isGrounded = 0;
-        }
-        else if (collider.gameObject.tag == "Obstacle") {
-            obj = GetComponent<Transform>();
-            obj.position = Vector3.zero;
-        }
-    }
-
-    void TapReader() {
-        if (Input.touchCount > 0) {
-            tap = Input.GetTouch(0);
-
-            if (tap.phase == TouchPhase.Began && isGrounded < jumpCount) {
-                Debug.Log("Tap");
-                isGrounded++;
-                firstTouch = tap.position;
-                lastTouch = tap.position;
-
-                rb.velocity += jumpForce * Vector3.up;
-
-            }
-            else if (tap.phase == TouchPhase.Began && isGrounded >= jumpCount) {
-                Debug.Log("No more jump");
-            }
-            else if (tap.phase == TouchPhase.Moved) {
-                lastTouch = tap.position;
-                Movement();
-            }
-        }
-    }
-
-    void Movement() {
-        if (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) {
-                rb.velocity += dashForce * Vector3.right;
-        }
     }
 
 
