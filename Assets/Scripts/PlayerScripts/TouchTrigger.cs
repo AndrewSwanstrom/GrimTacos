@@ -11,6 +11,8 @@ public class TouchTrigger : MonoBehaviour
 
     public float speed = 10.0f;
 
+    private GameObject checkpoint;
+
     int isGrounded;
     float dragDistance;
     Vector3 firstTouch;
@@ -24,6 +26,9 @@ public class TouchTrigger : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         jumpCount = jumpCount - 1;
         dragDistance = Screen.height * screenPercent/100;
+
+        
+
     }
 
     // Update is called once per frame
@@ -40,7 +45,17 @@ public class TouchTrigger : MonoBehaviour
         }
         else if (collider.gameObject.tag == "Obstacle") {
             obj = GetComponent<Transform>();
-            obj.position = Vector3.zero;
+
+            checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
+            if (checkpoint != null)
+            {
+                obj.position = checkpoint.transform.position;
+            } 
+            else
+            {
+                obj.position = Vector3.zero;
+            }
+            
         }
     }
 
@@ -64,6 +79,16 @@ public class TouchTrigger : MonoBehaviour
                 lastTouch = tap.position;
                 Movement();
             }
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+            isGrounded++;
+            //Debug.Log(isGrounded);
+            //firstTouch = tap.position;
+            //lastTouch = tap.position;
+
+            rb.velocity += jumpForce * Vector3.up;
         }
     }
 
