@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Stylesheet.uss?fileID=7433441132597879392&amp;guid=86090d1a45a816849998cc14ba609906&amp;type=3#Stylesheet" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: flex-end; align-items: stretch;">
+        <ui:VisualElement name="Container" style="flex-grow: 1; flex-basis: 20%; height: 81px; align-items: center; justify-content: center; padding-left: 15%; padding-right: 15%; background-color: rgba(56, 56, 56, 0.59); align-self: center; -unity-font-style: bold; color: rgb(255, 0, 201);">
+            <ui:Label tabindex="-1" text="Grim Tacos&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; flex-direction: column; justify-content: flex-start; align-items: stretch; height: 50px; font-size: 32px; -unity-font-style: bold-and-italic; color: rgb(168, 255, 0); -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=cb064bb4353babb4683fc934ccaeb3c5&amp;type=3#NotInter-Regular&quot;);" />
+            <ui:Button text="Play" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Controls" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
+            <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" style="justify-content: flex-start;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
