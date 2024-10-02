@@ -42,7 +42,7 @@ public class TapReader
     void Movement() {
         if (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) {
                 rb.velocity += dash * Vector3.right;
-                //Debug.Log("Swipe");
+                Debug.Log("Swipe");
         }
     }
 }

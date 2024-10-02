@@ -33,5 +33,12 @@ public class TouchTrigger : MonoBehaviour
         //Vector3.ClampMagnitude(rb.velocity + Vector3.right, 10);
     }
 
+    void OnCollisionEnter(Collision collider) {
+        if (collider.gameObject.tag == "Ground" && tapScript.isGrounded >= tapScript.count) {
+            tapScript.isGrounded = 0;
+            //Debug.Log("Grounded is reset");
+        }
+    }
+
 
 }
