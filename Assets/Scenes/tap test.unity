@@ -1305,9 +1305,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 7
   dashForce: 25
-  jumpCount: 2
+  jumpCount: 3
   screenPercent: 15
   speed: 10
+  maxSpeed: 10
 --- !u!54 &1304999324
 Rigidbody:
   m_ObjectHideFlags: 0
