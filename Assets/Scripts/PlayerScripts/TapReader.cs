@@ -19,7 +19,10 @@ public class TapReader
     public void Tap() {
         if (Input.touchCount > 0) {
             tap = Input.GetTouch(0);
-
+            //Debug.Log(isGrounded+"!");
+            
+            //count++;
+            //Debug.Log(count);
             if (tap.phase == TouchPhase.Began && isGrounded < count) {
                 //Debug.Log("Tap");
                 isGrounded++;

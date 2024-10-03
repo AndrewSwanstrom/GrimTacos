@@ -11,6 +11,7 @@ public class TouchTrigger : MonoBehaviour
     public float screenPercent;
 
     public float speed = 10.0f;
+    public float maxSpeed = 10.0f;
 
     Rigidbody rb;
 
@@ -28,9 +29,7 @@ public class TouchTrigger : MonoBehaviour
     void Update()
     {
         tapScript.Tap();
-
-        rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x + 0.1f,0,speed) , rb.velocity.y, rb.velocity.z); // move right
-        //Vector3.ClampMagnitude(rb.velocity + Vector3.right, 10);
+        rb.velocity += new Vector3(1 - ((rb.velocity.x - maxSpeed) / 2), 0, 0);// Vector3.right - (rb.velocity.x - maxSpeed);
     }
 
     void OnCollisionEnter(Collision collider) {
