@@ -13,16 +13,33 @@ public class TouchTrigger : MonoBehaviour
     public float speed = 10.0f;
     public float maxSpeed = 10.0f;
 
+    AudioSource audioSource;
+    AudioSource skateLoopAudioSource;
+    public AudioClip dashSound;
+    public AudioClip skateRoll;
+    public AudioClip skateJump;
+    public AudioClip skateLand;
+
     Rigidbody rb;
 
     void Start() {
         rb = GetComponent<Rigidbody>(); tapScript.rb = rb;
+        audioSource = Camera.main.GetComponent<AudioSource>();
+        skateLoopAudioSource = GetComponent<AudioSource>();
+
         jumpCount = jumpCount - 1;
 
         tapScript.dash = dashForce;
         tapScript.force = jumpForce;
         tapScript.count = jumpCount;
         tapScript.dragDistance = Screen.height * screenPercent/100;
+
+        tapScript.dashSound = dashSound;
+        tapScript.skateRoll = skateRoll;
+        tapScript.skateJump = skateJump;
+        tapScript.skateLand = skateLand;
+
+
     }
 
     // Update is called once per frame
@@ -30,12 +47,39 @@ public class TouchTrigger : MonoBehaviour
     {
         tapScript.Tap();
         rb.velocity += new Vector3(1 - ((rb.velocity.x - maxSpeed) / 2), 0, 0);// Vector3.right - (rb.velocity.x - maxSpeed);
+
+        //if (tapScript.touching == true)
+        //{
+        //     tapScript.touchTime += Time.time;
+        //     Debug.Log(tapScript.touchTime);
+        //}
+
+        if (tapScript.isGrounded == 0)
+        {
+            skateLoopAudioSource.volume = 1.0f;
+        }
+        else
+        {
+            skateLoopAudioSource.volume = 0.0f;
+        }
+
+        if (tapScript.touching == true && Time.time > tapScript.touchTime)
+        {
+            //tapScript.touchTime = Time.time + 0.3f;
+            //Instantiate(projectile, transform.position, transform.rotation);
+        }
+        else if (tapScript.touching == true)
+        {
+
+        }
+
     }
 
-    void OnCollisionEnter(Collision collider) {
-        if (collider.gameObject.tag == "Ground" && tapScript.isGrounded >= tapScript.count) {
+    void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag == "Ground" && tapScript.isGrounded >= 1) { //&& tapScript.isGrounded >= tapScript.count) {
             tapScript.isGrounded = 0;
-            //Debug.Log("Grounded is reset");
+            audioSource.time = 0.5f;
+            audioSource.PlayOneShot(skateLand, 1.0F);
         }
     }
 

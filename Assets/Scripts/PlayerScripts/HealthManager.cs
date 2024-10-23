@@ -27,12 +27,23 @@ public class HealthManager : MonoBehaviour
 
     public GameObject[] Hearts;
 
+    AudioSource audioSource;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
+
     private GameObject checkpoint;
+
+    void Start()
+    {
+        audioSource = Camera.main.GetComponent<AudioSource>();
+    }
 
     private void VariableChangeDown(int var, int newvar)
     {
+        Debug.Log("hurt");
         Hearts[newvar].gameObject.GetComponent<Image>().color = new Color(1,1,1, 0f);
         Hearts[newvar].transform.Find("BrokenImage").gameObject.SetActive(true);
+        audioSource.PlayOneShot(hurtSound, 1.0F);
     }
 
     void OnTriggerEnter(Collider collider) {
@@ -42,10 +53,13 @@ public class HealthManager : MonoBehaviour
         else if (collider.gameObject.tag == "Obstacle") {
             healthVar--;
 
-            if (healthVar == 0) {
+            if (healthVar == 0) { //DEATH
+
                 //transform.DetachChildren();
                 //Destroy(this.gameObject);
                 obj = GetComponent<Transform>();
+
+                audioSource.PlayOneShot(deathSound, 1.0F);
 
                 checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
                 if (checkpoint != null)

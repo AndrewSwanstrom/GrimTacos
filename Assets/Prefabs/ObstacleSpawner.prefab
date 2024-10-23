@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8036561261437113003}
   - component: {fileID: 3037863584495378686}
   - component: {fileID: 7416020259445760990}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: ObstacleSpawner
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 0.2, z: 1}
+  m_LocalScale: {x: 10, y: 0.20000002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,5 +99,5 @@ MonoBehaviour:
   obstaclesToSpawn: 1
   obstacleArray:
   - {fileID: 7391680564267563459, guid: eb81ceb1e8762624bad0945652c06d2f, type: 3}
-  - {fileID: 2801392070869477591, guid: 577aa79f4ba7c824f841b2d0719d4415, type: 3}
+  - {fileID: 10298271325581290, guid: 4e1b0762e81dd93498689e6a44116146, type: 3}
   - {fileID: 10298271325581290, guid: 4e1b0762e81dd93498689e6a44116146, type: 3}
