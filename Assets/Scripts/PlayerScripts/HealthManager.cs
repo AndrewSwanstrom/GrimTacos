@@ -47,13 +47,23 @@ public class HealthManager : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.tag == "Ground") {
+        if (collider.gameObject.CompareTag("Ground")) {
         tapScript.isGrounded = 0;
         }
-        else if (collider.gameObject.tag == "Obstacle") {
+        else if (collider.gameObject.CompareTag("Obstacle")) {
             healthVar--;
 
-            if (healthVar == 0) { //DEATH
+            DeathCheck();
+
+        }
+        else if (collider.gameObject.CompareTag("Death")) {
+            healthVar -= health;
+            DeathCheck();
+        }
+    }
+
+    void DeathCheck() {
+        if (healthVar <= 0) { //DEATH
 
                 //transform.DetachChildren();
                 //Destroy(this.gameObject);
@@ -78,8 +88,6 @@ public class HealthManager : MonoBehaviour
                     Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
                 }
             }
-
-        }
     }
 
 
