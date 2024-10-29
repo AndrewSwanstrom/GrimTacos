@@ -1,0 +1,22 @@
+.button {
+    width: 120px;
+    height: 50px;
+    background-color: rgba(255, 0, 250, 0.91);
+    -unity-font: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=cb064bb4353babb4683fc934ccaeb3c5&type=3#NotInter-Regular");
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-left-color: rgb(0, 249, 238);
+    border-right-color: rgb(0, 249, 238);
+    border-top-color: rgb(0, 249, 238);
+    border-bottom-color: rgb(0, 249, 238);
+    align-items: stretch;
+    color: rgb(255, 213, 3);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
