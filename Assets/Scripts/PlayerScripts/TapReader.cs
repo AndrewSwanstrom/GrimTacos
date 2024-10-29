@@ -25,6 +25,8 @@ public class TapReader
     Vector3 firstTouch;
     Vector3 lastTouch;
 
+    public Animator playerAnimator;
+
     //next: get time tap is held, if held longer than 0.3 seconds, jump. if it moves within those 0.3 seconds, dont jump. if let go within those 0.3 seconds (and doesnt travel far enough) then jump.
 
 
@@ -40,9 +42,11 @@ public class TapReader
                 rb.velocity += force * Vector3.up;
 
                 Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
+                playerAnimator.SetBool("isJumping", true);
             }
             else if (tap.phase == TouchPhase.Began && isGrounded >= count) {
                 //Debug.Log("No more jump");
+                playerAnimator.SetBool("isJumping", false);
             }
             else if (tap.phase == TouchPhase.Moved) {
                 lastTouch = tap.position;
