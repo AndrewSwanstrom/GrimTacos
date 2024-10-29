@@ -24,6 +24,7 @@ public class TouchTrigger : MonoBehaviour
 
     void Start() {
         rb = GetComponent<Rigidbody>(); tapScript.rb = rb;
+        tapScript.playerAnimator = GetComponent<Animator>();
         audioSource = Camera.main.GetComponent<AudioSource>();
         skateLoopAudioSource = GetComponent<AudioSource>();
 
