@@ -40,7 +40,7 @@ public class HealthManager : MonoBehaviour
 
     private void VariableChangeDown(int var, int newvar)
     {
-        Debug.Log("hurt");
+        //Debug.Log("hurt");
         Hearts[newvar].gameObject.GetComponent<Image>().color = new Color(1,1,1, 0f);
         Hearts[newvar].transform.Find("BrokenImage").gameObject.SetActive(true);
         audioSource.PlayOneShot(hurtSound, 1.0F);
@@ -80,6 +80,48 @@ public class HealthManager : MonoBehaviour
             }
 
         }
+        else if (collider.gameObject.tag == "BreakableWall")
+        {
+            Debug.Log("hit?");
+            if (tapScript.dashing = false)
+            {
+
+            
+                healthVar--;
+
+                if (healthVar == 0)
+                { //DEATH
+
+                    //transform.DetachChildren();
+                    //Destroy(this.gameObject);
+                    obj = GetComponent<Transform>();
+
+                    audioSource.PlayOneShot(deathSound, 1.0F);
+
+                    checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
+                    if (checkpoint != null)
+                    {
+                        obj.position = checkpoint.transform.position;
+                    }
+                    else
+                    {
+                        obj.position = Vector3.zero;
+                    }
+
+                    healthVar = maxHealth;
+                    for (int i = 0; i < Hearts.Length; i++)
+                    {
+                        Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+                        Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
+                    }
+                }
+
+            } else
+            {
+                Destroy(collider.gameObject);
+            }
+        }
+
     }
 
 

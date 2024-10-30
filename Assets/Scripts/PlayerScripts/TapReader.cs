@@ -8,9 +8,11 @@ public class TapReader
     public float dragDistance;
     public float force;
     public float dash;
+    public bool dashing;
     public int count;
     public Rigidbody rb;
    
+
 
     public bool touching;
     public float touchTime;
@@ -61,6 +63,7 @@ public class TapReader
             {
                 //Debug.Log(touching);
                 touching = false;
+                dashing = false; //temp
                 touchTime = 2.0f;
             }
 
@@ -71,7 +74,12 @@ public class TapReader
         if (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) {
                 rb.velocity += dash * Vector3.right;
             Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
-            Debug.Log("Swipe");
+            dashing = true;
+            //Debug.Log("Swipe");
+        }
+        else
+        {
+            dashing = false;
         }
     }
 }
