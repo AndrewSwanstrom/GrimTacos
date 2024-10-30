@@ -82,8 +82,8 @@ public class HealthManager : MonoBehaviour
         }
         else if (collider.gameObject.tag == "BreakableWall")
         {
-            Debug.Log("hit?");
-            if (tapScript.dashing = false)
+
+            if (tapScript.dashing == false)
             {
 
             
