@@ -50,15 +50,16 @@ public class TapReader
 
             //elseif for jumping
                 if (tap.phase == TouchPhase.Began && isGrounded >= count) {
+                    //stops jump
                     //Debug.Log("No more jump");
-                    playerAnimator.SetBool("isJumping", false);
                 }
                 else if (tap.phase == TouchPhase.Moved) {
+                    //swipe check
                     lastTouch = tap.position;
                     Movement();
                 }
                 else if (tap.phase == TouchPhase.Began && isGrounded < count) {
-                    playerAnimator.SetBool("isJumping", true);
+                    //jumping
                     
                     isGrounded++;
                     firstTouch = tap.position;
@@ -67,6 +68,7 @@ public class TapReader
                     rb.velocity += force * Vector3.up;
 
                     Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
+                    playerAnimator.SetTrigger("isJumping");
                 }
 
         }
