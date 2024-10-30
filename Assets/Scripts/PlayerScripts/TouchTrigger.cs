@@ -7,6 +7,9 @@ public class TouchTrigger : MonoBehaviour
     TapReader tapScript = new TapReader();
     public float jumpForce;
     public float dashForce;
+
+    public bool dashing;
+
     public int jumpCount;
     public float screenPercent;
 
@@ -24,6 +27,9 @@ public class TouchTrigger : MonoBehaviour
 
     void Start() {
         rb = GetComponent<Rigidbody>(); tapScript.rb = rb;
+
+        tapScript.player = gameObject;
+
         audioSource = Camera.main.GetComponent<AudioSource>();
         skateLoopAudioSource = GetComponent<AudioSource>();
 
@@ -45,6 +51,7 @@ public class TouchTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        tapScript.dashing = dashing;
         tapScript.Tap();
         rb.velocity += new Vector3(1 - ((rb.velocity.x - maxSpeed) / 2), 0, 0);// Vector3.right - (rb.velocity.x - maxSpeed);
 

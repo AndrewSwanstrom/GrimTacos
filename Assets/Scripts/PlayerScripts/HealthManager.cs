@@ -50,39 +50,9 @@ public class HealthManager : MonoBehaviour
         if (collider.gameObject.tag == "Ground") {
         tapScript.isGrounded = 0;
         }
-        else if (collider.gameObject.tag == "Obstacle") {
-            healthVar--;
-
-            if (healthVar == 0) { //DEATH
-
-                //transform.DetachChildren();
-                //Destroy(this.gameObject);
-                obj = GetComponent<Transform>();
-
-                audioSource.PlayOneShot(deathSound, 1.0F);
-
-                checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
-                if (checkpoint != null)
-                {
-                    obj.position = checkpoint.transform.position;
-                }
-                else
-                {
-                    obj.position = Vector3.zero;
-                }
-
-                healthVar = maxHealth;
-                for (int i = 0; i < Hearts.Length; i++)
-                {
-                    Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-                    Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
-                }
-            }
-
-        }
         else if (collider.gameObject.tag == "BreakableWall")
         {
-
+           Debug.Log(tapScript.touching);
             if (tapScript.dashing == false)
             {
 
@@ -115,12 +85,38 @@ public class HealthManager : MonoBehaviour
                         Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
                     }
                 }
-
-            } else
-            {
-                Destroy(collider.gameObject);
             }
         }
+        else if (collider.gameObject.tag == "Obstacle") {
+                healthVar--;
+
+                if (healthVar == 0) { //DEATH
+
+                    //transform.DetachChildren();
+                    //Destroy(this.gameObject);
+                    obj = GetComponent<Transform>();
+
+                    audioSource.PlayOneShot(deathSound, 1.0F);
+
+                    checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
+                    if (checkpoint != null)
+                    {
+                        obj.position = checkpoint.transform.position;
+                    }
+                    else
+                    {
+                        obj.position = Vector3.zero;
+                    }
+
+                    healthVar = maxHealth;
+                    for (int i = 0; i < Hearts.Length; i++)
+                    {
+                        Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+                        Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
+                    }
+                }
+
+            }
 
     }
 
