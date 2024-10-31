@@ -31,6 +31,11 @@ public class HealthManager : MonoBehaviour
     public AudioClip hurtSound;
     public AudioClip deathSound;
 
+    public AudioClip breaksound1;
+    public AudioClip breaksound2;
+    public AudioClip breaksound3;
+    public AudioClip breaksound4;
+
     public bool dashing = false;
 
     private GameObject checkpoint;
@@ -90,12 +95,16 @@ public class HealthManager : MonoBehaviour
             }
             else
             {
+                
+                var rando = Random.Range(1, 4);
+                if (rando == 1) { audioSource.PlayOneShot(breaksound1, 1.0F); }
+                if (rando == 2) { audioSource.PlayOneShot(breaksound2, 1.0F); }
+                if (rando == 3) { audioSource.PlayOneShot(breaksound3, 1.0F); }
+                if (rando == 4) { audioSource.PlayOneShot(breaksound4, 1.0F); }
+
                 collider.gameObject.GetComponent<ParticleSystem>().Play();
                 collider.gameObject.GetComponent<Animator>().SetTrigger("Break");
-
-                //sprites = new SpriteCollection("Spritesheet");
-                //collider.gameObject.GetComponent<SpriteRenderer>().sprite =// SpriteSheet.GetSprite("breakable_wall_spritesheet_1"); ;// = sprites.GetSprite("Sprite1");
-                //Destroy(collider.gameObject);
+                Destroy(collider.gameObject.GetComponent<BoxCollider>());
             }
         }
         else if (collider.gameObject.tag == "Obstacle") {
