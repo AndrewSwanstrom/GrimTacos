@@ -8,7 +8,7 @@ public class TapReader
     public float dragDistance;
     public float force;
     public float dash;
-    public bool dashing = false;
+    //public bool dashing = false;
     public int count;
     public Rigidbody rb;
     public GameObject player;
@@ -68,6 +68,8 @@ public class TapReader
                 touching = false;
                 //dashing = false; //temp
                 touchTime = 2.0f;
+
+                player.GetComponent<HealthManager>().dashing = false; //temp spot
             }
 
         }
@@ -77,12 +79,9 @@ public class TapReader
         if (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) {
                 rb.velocity += dash * Vector3.right;
             Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
+           player.GetComponent<HealthManager>().dashing = true;
            //dashing = true;
-            //Debug.Log("Swipe");
-        }
-        else
-        {
-           // dashing = false;
+            Debug.Log("dashing");
         }
     }
 }

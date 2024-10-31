@@ -31,6 +31,8 @@ public class HealthManager : MonoBehaviour
     public AudioClip hurtSound;
     public AudioClip deathSound;
 
+    public bool dashing = false;
+
     private GameObject checkpoint;
 
     void Start()
@@ -52,11 +54,11 @@ public class HealthManager : MonoBehaviour
         }
         else if (collider.gameObject.tag == "BreakableWall")
         {
-           Debug.Log(tapScript.touching);
-            if (tapScript.dashing == false)
+
+            if (dashing == false)
             {
 
-            
+
                 healthVar--;
 
                 if (healthVar == 0)
@@ -85,6 +87,10 @@ public class HealthManager : MonoBehaviour
                         Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
                     }
                 }
+            }
+            else
+            {
+                Destroy(collider.gameObject);
             }
         }
         else if (collider.gameObject.tag == "Obstacle") {
