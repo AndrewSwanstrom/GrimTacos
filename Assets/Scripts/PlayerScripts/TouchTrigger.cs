@@ -51,15 +51,18 @@ public class TouchTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //tapScript.dashing = dashing;
         tapScript.Tap();
         rb.velocity += new Vector3(1 - ((rb.velocity.x - maxSpeed) / 2), 0, 0);// Vector3.right - (rb.velocity.x - maxSpeed);
 
-        //if (tapScript.touching == true)
-        //{
-        //     tapScript.touchTime += Time.time;
-        //     Debug.Log(tapScript.touchTime);
-        //}
+        if (tapScript.touching == true)
+        {
+            tapScript.touchTime += Time.deltaTime;
+            //if (tapScript.touchTime>0.06f)
+            //{
+            //    //Debug.Log("jump now");
+            //}
+            
+        }
 
         if (tapScript.isGrounded == 0)
         {
