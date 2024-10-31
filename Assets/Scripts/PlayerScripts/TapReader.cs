@@ -47,13 +47,15 @@ public class TapReader
                 //touching = true;
             //}
 
+            //maybe add slight jump cooldown so player doesnt accidently double-tap jump?
             if (tap.phase == TouchPhase.Stationary && touchTime > 0.03f && delayedJumpDebounce == false)
             {
                 delayedJumpDebounce = true;
                 //Debug.Log("jump (late)"); // would be ideal to disconnect this touch somehow, but isnt likely a real issue
                 Jump();
             }
-            if (tap.phase == TouchPhase.Ended && touchTime < 0.1f && player.GetComponent<HealthManager>().dashing == false)
+
+            if (tap.phase == TouchPhase.Ended && touchTime < 0.3f && player.GetComponent<HealthManager>().dashing == false)
             {
                 //lastTouch = null;
                 //Debug.Log("jump (early)");
