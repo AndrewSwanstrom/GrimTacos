@@ -90,7 +90,12 @@ public class HealthManager : MonoBehaviour
             }
             else
             {
-                Destroy(collider.gameObject);
+                collider.gameObject.GetComponent<ParticleSystem>().Play();
+                collider.gameObject.GetComponent<Animator>().SetTrigger("Break");
+
+                //sprites = new SpriteCollection("Spritesheet");
+                //collider.gameObject.GetComponent<SpriteRenderer>().sprite =// SpriteSheet.GetSprite("breakable_wall_spritesheet_1"); ;// = sprites.GetSprite("Sprite1");
+                //Destroy(collider.gameObject);
             }
         }
         else if (collider.gameObject.tag == "Obstacle") {
