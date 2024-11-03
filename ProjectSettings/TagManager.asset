@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Obstacle
   - Checkpoint
+  - BreakableWall
   layers:
   - Default
   - TransparentFX

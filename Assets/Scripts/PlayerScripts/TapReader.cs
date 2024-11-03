@@ -8,12 +8,18 @@ public class TapReader
     public float dragDistance;
     public float force;
     public float dash;
+    private float dashTimer;
+    private float dashLength = 0.4f;
+    //public bool dashing = false;
     public int count;
     public Rigidbody rb;
-   
-
+    public GameObject player;
+  
     public bool touching;
-    public float touchTime;
+
+    private bool delayedJumpDebounce = false;
+
+    public float touchTime = 0;
 
     AudioSource audioSource;
     public AudioClip dashSound;
@@ -29,49 +35,102 @@ public class TapReader
 
 
     public void Tap() {
+
+       
         if (Input.touchCount > 0) {
+            //Debug.Log(touching);
             tap = Input.GetTouch(0);
 
-            if (tap.phase == TouchPhase.Began && isGrounded < count) {
-                isGrounded++;
-                firstTouch = tap.position;
-                lastTouch = tap.position;
-                
-                rb.velocity += force * Vector3.up;
 
-                Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
+           // if (tap.phase == TouchPhase.Stationary && touching == false)
+            //{
+                //touching = true;
+            //}
+
+            //maybe add slight jump cooldown so player doesnt accidently double-tap jump?
+            if (tap.phase == TouchPhase.Stationary && touchTime > 0.03f && delayedJumpDebounce == false)
+            {
+                delayedJumpDebounce = true;
+                //Debug.Log("jump (late)"); // would be ideal to disconnect this touch somehow, but isnt likely a real issue
+                Jump();
             }
-            else if (tap.phase == TouchPhase.Began && isGrounded >= count) {
-                //Debug.Log("No more jump");
+
+            if (tap.phase == TouchPhase.Ended && touchTime < 0.3f && player.GetComponent<HealthManager>().dashing == false)
+            {
+                //lastTouch = null;
+                //Debug.Log("jump (early)");
+                Jump();
             }
-            else if (tap.phase == TouchPhase.Moved) {
+            if (tap.phase == TouchPhase.Moved)
+            {
                 lastTouch = tap.position;
-                Movement();
+                Movement(); // function that runs if move is strong enough
             }
+
+            //if (tap.phase == TouchPhase.Began && isGrounded < count) {
+
+            //}
+            //else if (tap.phase == TouchPhase.Began && isGrounded >= count) {
+                //Debug.Log("No more jump");
+            //}
+            //else if (tap.phase == TouchPhase.Moved) {
+            //    lastTouch = tap.position;
+            //    Movement();
+            //}
 
 
             if (tap.phase == TouchPhase.Began)
-            {
-
+            {             
                 touching = true;
-                touchTime = 1.0f;
+                touchTime = 0f;
+                firstTouch = tap.position;
             }
 
             if (tap.phase == TouchPhase.Ended)
             {
-                //Debug.Log(touching);
+                delayedJumpDebounce = false;
                 touching = false;
-                touchTime = 2.0f;
+                //player.GetComponent<HealthManager>().dashing = false; //temp spot
             }
 
+        }
+
+        if (player.GetComponent<HealthManager>().dashing == true)
+        {
+
+            touchTime = 0;
+            rb.velocity += dash * Vector3.right;
+            
+            dashTimer += Time.deltaTime;
+            if (dashTimer > dashLength) //dash length in seconds
+            {
+                player.GetComponent<HealthManager>().dashing = false;
+                dashTimer = 0;
+            }
+
+        }
+
+    }
+
+    void Jump()
+    {
+        if (isGrounded < count) {
+            isGrounded++;
+            //firstTouch = tap.position;
+            //lastTouch = tap.position;
+            rb.velocity += force * Vector3.up;
+
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
         }
     }
 
     void Movement() {
-        if (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) {
-                rb.velocity += dash * Vector3.right;
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
-            Debug.Log("Swipe");
+        if ( (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) && player.GetComponent<HealthManager>().dashing == false) {
+            player.GetComponent<HealthManager>().dashing = true;
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(dashSound, 1.0f);
+            //touchTime = 0;
+            //rb.velocity += dash * Vector3.right;
+            //Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
         }
     }
 }
