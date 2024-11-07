@@ -8,6 +8,7 @@ public class TapReader
     public float dragDistance;
     public float force;
     public float dash;
+   // private bool dashing = false;
     private float dashTimer;
     private float dashLength = 0.4f;
     //public bool dashing = false;
@@ -19,6 +20,11 @@ public class TapReader
 
     private bool delayedJumpDebounce = false;
 
+    //double jump bugfix variables:
+    //private float jumpinitialtime;
+    //private float jumpcooldowntimer;
+
+    
     public float touchTime = 0;
 
     AudioSource audioSource;
@@ -42,41 +48,43 @@ public class TapReader
             tap = Input.GetTouch(0);
 
 
-           // if (tap.phase == TouchPhase.Stationary && touching == false)
+            ////maybe add slight jump cooldown so player doesnt accidently double-tap jump?
+            //if (tap.phase == TouchPhase.Stationary && touchTime > 0.03f && delayedJumpDebounce == false)
             //{
-                //touching = true;
+            //    delayedJumpDebounce = true;
+            //    Debug.Log("jump (late)"); // would be ideal to disconnect this touch somehow, but isnt likely a real issue
+            //    Jump();
             //}
 
-            //maybe add slight jump cooldown so player doesnt accidently double-tap jump?
-            if (tap.phase == TouchPhase.Stationary && touchTime > 0.03f && delayedJumpDebounce == false)
+            //if (tap.phase == TouchPhase.Ended && touchTime < 0.3f && player.GetComponent<HealthManager>().dashing == false)
+            //{
+            //    //lastTouch = null;
+            //    Debug.Log("jump (early)");
+            //    Jump();
+            //}
+            //if (tap.phase == TouchPhase.Moved)
+            //{
+            //    lastTouch = tap.position;
+            //    Movement(); // function that runs if move is strong enough
+            //}
+
+            if (touching && touchTime > 0.1f && delayedJumpDebounce == false &&  player.GetComponent<HealthManager>().dashing != true)
             {
                 delayedJumpDebounce = true;
-                //Debug.Log("jump (late)"); // would be ideal to disconnect this touch somehow, but isnt likely a real issue
+                Debug.Log("jump(late)"+ touchTime);
                 Jump();
             }
-
-            if (tap.phase == TouchPhase.Ended && touchTime < 0.3f && player.GetComponent<HealthManager>().dashing == false)
+            if (tap.phase == TouchPhase.Ended && touchTime < 0.1f && player.GetComponent<HealthManager>().dashing != true)
             {
-                //lastTouch = null;
-                //Debug.Log("jump (early)");
+                Debug.Log("jump(normally)");
                 Jump();
+                //Debug.Log(player.GetComponent<HealthManager>().dashing);
             }
             if (tap.phase == TouchPhase.Moved)
             {
                 lastTouch = tap.position;
                 Movement(); // function that runs if move is strong enough
             }
-
-            //if (tap.phase == TouchPhase.Began && isGrounded < count) {
-
-            //}
-            //else if (tap.phase == TouchPhase.Began && isGrounded >= count) {
-                //Debug.Log("No more jump");
-            //}
-            //else if (tap.phase == TouchPhase.Moved) {
-            //    lastTouch = tap.position;
-            //    Movement();
-            //}
 
 
             if (tap.phase == TouchPhase.Began)
@@ -89,21 +97,27 @@ public class TapReader
             if (tap.phase == TouchPhase.Ended)
             {
                 delayedJumpDebounce = false;
+                //jumpinitialtime = 1; //
+                //Debug.Log("ended");
                 touching = false;
-                //player.GetComponent<HealthManager>().dashing = false; //temp spot
+                //Debug.Log("touched for"+touchTime);
             }
+
+
 
         }
 
         if (player.GetComponent<HealthManager>().dashing == true)
         {
 
-            touchTime = 0;
+            //touchTime = 0;
+            //touchTime = 1;
             rb.velocity += dash * Vector3.right;
             
             dashTimer += Time.deltaTime;
             if (dashTimer > dashLength) //dash length in seconds
             {
+                Debug.Log("dash ended");
                 player.GetComponent<HealthManager>().dashing = false;
                 dashTimer = 0;
             }
@@ -114,18 +128,31 @@ public class TapReader
 
     void Jump()
     {
-        if (isGrounded < count) {
-            isGrounded++;
-            //firstTouch = tap.position;
-            //lastTouch = tap.position;
-            rb.velocity += force * Vector3.up;
 
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
-        }
+        //jumpinitialtime = (Time.time - jumpcooldowntimer);
+        //jumpcooldowntimer = Time.time;
+        //Debug.Log(jumpinitialtime);
+        //if (jumpinitialtime > 0.3)
+        //{   
+
+            //jumping == true;
+
+            if (isGrounded < count)
+            {
+                    isGrounded++;
+                    //firstTouch = tap.position;
+                    //lastTouch = tap.position;
+                    rb.velocity += force * Vector3.up;
+
+                    Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
+            }
+
+        //}
     }
 
     void Movement() {
         if ( (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) && player.GetComponent<HealthManager>().dashing == false) {
+            Debug.Log("dash started");
             player.GetComponent<HealthManager>().dashing = true;
             Camera.main.GetComponent<AudioSource>().PlayOneShot(dashSound, 1.0f);
             //touchTime = 0;
@@ -134,3 +161,15 @@ public class TapReader
         }
     }
 }
+
+
+//if (tap.phase == TouchPhase.Began && isGrounded < count) {
+
+//}
+//else if (tap.phase == TouchPhase.Began && isGrounded >= count) {
+//Debug.Log("No more jump");
+//}
+//else if (tap.phase == TouchPhase.Moved) {
+//    lastTouch = tap.position;
+//    Movement();
+//}
