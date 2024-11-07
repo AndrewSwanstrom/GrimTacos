@@ -80,12 +80,11 @@ public class TapReader
         if (player.GetComponent<HealthManager>().dashing == true)
         {
 
-            rb.velocity += dash * Vector3.right;
+            rb.velocity = dash * Vector3.right;
             
             dashTimer += Time.deltaTime;
             if (dashTimer > dashLength) //dash length in seconds
             {
-                Debug.Log("dash ended");
                 player.GetComponent<HealthManager>().dashing = false;
                 dashTimer = 0;
             }
@@ -99,14 +98,13 @@ public class TapReader
             if (isGrounded < count)
             {
                     isGrounded++;
-                    rb.velocity += force * Vector3.up;
+                    rb.velocity = force * Vector3.up;
                     Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
             }
     }
 
     void Movement() {
         if ( (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) && player.GetComponent<HealthManager>().dashing == false) {
-            Debug.Log("dash started");
             touchconnected = false;
             player.GetComponent<HealthManager>().dashing = true;
             Camera.main.GetComponent<AudioSource>().PlayOneShot(dashSound, 1.0f);
