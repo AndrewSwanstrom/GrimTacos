@@ -45,9 +45,7 @@ public class TouchTrigger : MonoBehaviour
         tapScript.skateJump = skateJump;
         tapScript.skateLand = skateLand;
 
-
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -56,21 +54,16 @@ public class TouchTrigger : MonoBehaviour
 
         if (tapScript.touching == true)
         {
-            tapScript.touchTime += Time.deltaTime;
-            //if (tapScript.touchTime>0.06f)
-            //{
-            //    //Debug.Log("jump now");
-            //}
-            
+            tapScript.touchTime += Time.deltaTime;          
         }
 
         if (tapScript.isGrounded == 0)
         {
-            skateLoopAudioSource.volume = 1.0f;
+            //skateLoopAudioSource.volume = 1.0f;
         }
         else
         {
-            skateLoopAudioSource.volume = 0.0f;
+            //skateLoopAudioSource.volume = 0.0f;
         }
 
         if (tapScript.touching == true && Time.time > tapScript.touchTime)
@@ -82,6 +75,18 @@ public class TouchTrigger : MonoBehaviour
         {
 
         }
+
+        RaycastHit hit;
+        Vector3 p1 = transform.position;//- new Vector3(0,0.4f,0);
+        if (Physics.Raycast(p1,-transform.up, out hit, 1.4f))
+        {
+            skateLoopAudioSource.volume = 1.0f;
+        }
+        else
+        {
+            skateLoopAudioSource.volume = 0f;
+        }
+        Debug.DrawRay(p1, -transform.up* 1.4f, Color.yellow);
 
     }
 
