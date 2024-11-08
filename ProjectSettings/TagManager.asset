@@ -8,7 +8,6 @@ TagManager:
   - Obstacle
   - Checkpoint
   - BreakableWall
-  - Killzone
   layers:
   - Default
   - TransparentFX

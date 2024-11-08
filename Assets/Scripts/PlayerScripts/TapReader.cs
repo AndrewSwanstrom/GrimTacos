@@ -31,8 +31,6 @@ public class TapReader
     Vector3 firstTouch;
     Vector3 lastTouch;
 
-
-    public Animator playerAnimator;
     public void Tap() {
 
        
@@ -66,7 +64,6 @@ public class TapReader
                     firstTouch = tap.position;
                 }
 
-
             }
 
             if (tap.phase == TouchPhase.Ended)
@@ -75,6 +72,7 @@ public class TapReader
                 delayedJumpDebounce = false;
                 touching = false;
             }
+
 
 
         }
@@ -102,7 +100,6 @@ public class TapReader
                     isGrounded++;
                     rb.velocity = force * Vector3.up;
                     Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
-                    playerAnimator.SetTrigger("isJumping");
             }
     }
 
@@ -111,7 +108,6 @@ public class TapReader
             touchconnected = false;
             player.GetComponent<HealthManager>().dashing = true;
             Camera.main.GetComponent<AudioSource>().PlayOneShot(dashSound, 1.0f);
-            playerAnimator.SetTrigger("isDashing");
         }
     }
 }
