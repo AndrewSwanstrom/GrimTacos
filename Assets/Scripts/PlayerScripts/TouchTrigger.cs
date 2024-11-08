@@ -22,11 +22,14 @@ public class TouchTrigger : MonoBehaviour
 
     Rigidbody rb;
 
+    Animator animator;
+
     void Start() {
         rb = GetComponent<Rigidbody>(); tapScript.rb = rb;
         tapScript.playerAnimator = GetComponent<Animator>();
         audioSource = Camera.main.GetComponent<AudioSource>();
         skateLoopAudioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
 
         jumpCount = jumpCount - 1;
 
@@ -81,6 +84,7 @@ public class TouchTrigger : MonoBehaviour
             tapScript.isGrounded = 0;
             audioSource.time = 0.5f;
             audioSource.PlayOneShot(skateLand, 1.0F);
+            animator.SetTrigger("isGrounded");
         }
     }
 

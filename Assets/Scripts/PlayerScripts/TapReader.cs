@@ -79,6 +79,7 @@ public class TapReader
                 rb.velocity += dash * Vector3.right;
             Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
             Debug.Log("Swipe");
+            playerAnimator.SetTrigger("isDashing");
         }
     }
 }
