@@ -138,6 +138,29 @@ public class HealthManager : MonoBehaviour
                 }
 
             }
+        else if (collider.gameObject.tag == "Killzone") {
+                healthVar = 0;
+                obj = GetComponent<Transform>();
+
+                audioSource.PlayOneShot(deathSound, 1.0F);
+
+                checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
+                    if (checkpoint != null)
+                    {
+                        obj.position = checkpoint.transform.position;
+                    }
+                    else
+                    {
+                        obj.position = Vector3.zero;
+                    }
+
+                    healthVar = maxHealth;
+                    for (int i = 0; i < Hearts.Length; i++)
+                    {
+                        Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+                        Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
+                    }
+        }
 
     }
 
