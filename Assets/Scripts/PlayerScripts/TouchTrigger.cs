@@ -7,6 +7,9 @@ public class TouchTrigger : MonoBehaviour
     TapReader tapScript = new TapReader();
     public float jumpForce;
     public float dashForce;
+
+   // public bool dashing;
+
     public int jumpCount;
     public float screenPercent;
 
@@ -27,6 +30,7 @@ public class TouchTrigger : MonoBehaviour
     void Start() {
         rb = GetComponent<Rigidbody>(); tapScript.rb = rb;
         tapScript.playerAnimator = GetComponent<Animator>();
+        tapScript.player = gameObject;
         audioSource = Camera.main.GetComponent<AudioSource>();
         skateLoopAudioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -43,28 +47,25 @@ public class TouchTrigger : MonoBehaviour
         tapScript.skateJump = skateJump;
         tapScript.skateLand = skateLand;
 
-
     }
-
     // Update is called once per frame
     void Update()
     {
         tapScript.Tap();
         rb.velocity += new Vector3(1 - ((rb.velocity.x - maxSpeed) / 2), 0, 0);// Vector3.right - (rb.velocity.x - maxSpeed);
 
-        //if (tapScript.touching == true)
-        //{
-        //     tapScript.touchTime += Time.time;
-        //     Debug.Log(tapScript.touchTime);
-        //}
+        if (tapScript.touching == true)
+        {
+            tapScript.touchTime += Time.deltaTime;          
+        }
 
         if (tapScript.isGrounded == 0)
         {
-            skateLoopAudioSource.volume = 1.0f;
+            //skateLoopAudioSource.volume = 1.0f;
         }
         else
         {
-            skateLoopAudioSource.volume = 0.0f;
+            //skateLoopAudioSource.volume = 0.0f;
         }
 
         if (tapScript.touching == true && Time.time > tapScript.touchTime)
@@ -76,6 +77,18 @@ public class TouchTrigger : MonoBehaviour
         {
 
         }
+
+        RaycastHit hit;
+        Vector3 p1 = transform.position;//- new Vector3(0,0.4f,0);
+        if (Physics.Raycast(p1,-transform.up, out hit, 1.4f))
+        {
+            skateLoopAudioSource.volume = 1.0f;
+        }
+        else
+        {
+            skateLoopAudioSource.volume = 0f;
+        }
+        Debug.DrawRay(p1, -transform.up* 1.4f, Color.yellow);
 
     }
 
