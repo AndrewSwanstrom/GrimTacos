@@ -31,10 +31,7 @@ public class HealthManager : MonoBehaviour
     public AudioClip hurtSound;
     public AudioClip deathSound;
 
-    public AudioClip breaksound1;
-    public AudioClip breaksound2;
-    public AudioClip breaksound3;
-    public AudioClip breaksound4;
+    public AudioClip[] breaksound;
 
     public bool dashing = false;
 
@@ -66,42 +63,18 @@ public class HealthManager : MonoBehaviour
 
                 healthVar--;
 
-                if (healthVar == 0)
-                { //DEATH
+                Death();
 
-                    //transform.DetachChildren();
-                    //Destroy(this.gameObject);
-                    obj = GetComponent<Transform>();
-
-                    audioSource.PlayOneShot(deathSound, 1.0F);
-
-                    checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
-                    if (checkpoint != null)
-                    {
-                        obj.position = checkpoint.transform.position;
-                    }
-                    else
-                    {
-                        obj.position = Vector3.zero;
-                    }
-
-                    healthVar = maxHealth;
-                    for (int i = 0; i < Hearts.Length; i++)
-                    {
-                        Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-                        Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
-                    }
-                }
             }
             else
             {
                 
-                //make table instead later
+                //make table instead later //hi :3 -emily
                 var rando = Random.Range(1, 4);
-                if (rando == 1) { audioSource.PlayOneShot(breaksound1, 1.0F); }
-                if (rando == 2) { audioSource.PlayOneShot(breaksound2, 1.0F); }
-                if (rando == 3) { audioSource.PlayOneShot(breaksound3, 1.0F); }
-                if (rando == 4) { audioSource.PlayOneShot(breaksound4, 1.0F); }
+                if (rando == 1) { audioSource.PlayOneShot(breaksound[0], 1.0F); }
+                if (rando == 2) { audioSource.PlayOneShot(breaksound[1], 1.0F); }
+                if (rando == 3) { audioSource.PlayOneShot(breaksound[2], 1.0F); }
+                if (rando == 4) { audioSource.PlayOneShot(breaksound[3], 1.0F); }
 
                 collider.gameObject.GetComponent<ParticleSystem>().Play();
                 collider.gameObject.GetComponent<Animator>().SetTrigger("Break");
@@ -111,57 +84,42 @@ public class HealthManager : MonoBehaviour
         else if (collider.gameObject.tag == "Obstacle") {
                 healthVar--;
 
-                if (healthVar == 0) { //DEATH
-
-                    //transform.DetachChildren();
-                    //Destroy(this.gameObject);
-                    obj = GetComponent<Transform>();
-
-                    audioSource.PlayOneShot(deathSound, 1.0F);
-
-                    checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
-                    if (checkpoint != null)
-                    {
-                        obj.position = checkpoint.transform.position;
-                    }
-                    else
-                    {
-                        obj.position = Vector3.zero;
-                    }
-
-                    healthVar = maxHealth;
-                    for (int i = 0; i < Hearts.Length; i++)
-                    {
-                        Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-                        Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
-                    }
-                }
+                Death();
 
             }
         else if (collider.gameObject.tag == "Killzone") {
                 healthVar = 0;
-                obj = GetComponent<Transform>();
-
-                audioSource.PlayOneShot(deathSound, 1.0F);
-
-                checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
-                    if (checkpoint != null)
-                    {
-                        obj.position = checkpoint.transform.position;
-                    }
-                    else
-                    {
-                        obj.position = Vector3.zero;
-                    }
-
-                    healthVar = maxHealth;
-                    for (int i = 0; i < Hearts.Length; i++)
-                    {
-                        Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
-                        Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
-                    }
+                Death();
         }
 
+    }
+
+    void Death() {
+        if (healthVar == 0) { //DEATH
+
+            //transform.DetachChildren();
+            //Destroy(this.gameObject);
+            obj = GetComponent<Transform>();
+
+            audioSource.PlayOneShot(deathSound, 1.0F);
+
+            checkpoint = gameObject.GetComponent<ActivateCheckpoint>().currentCheckpoint;
+            if (checkpoint != null)
+            {
+                obj.position = checkpoint.transform.position;
+            }
+            else
+            {
+                obj.position = Vector3.zero;
+            }
+
+            healthVar = maxHealth;
+            for (int i = 0; i < Hearts.Length; i++)
+            {
+                Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+                Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
+            }
+        }
     }
 
 

@@ -59,7 +59,7 @@ public class TouchTrigger : MonoBehaviour
             tapScript.touchTime += Time.deltaTime;          
         }
 
-        if (tapScript.isGrounded == 0)
+        /*if (tapScript.isGrounded == 0)
         {
             //skateLoopAudioSource.volume = 1.0f;
         }
@@ -76,7 +76,7 @@ public class TouchTrigger : MonoBehaviour
         else if (tapScript.touching == true)
         {
 
-        }
+        }*/
 
         RaycastHit hit;
         Vector3 p1 = transform.position;//- new Vector3(0,0.4f,0);
