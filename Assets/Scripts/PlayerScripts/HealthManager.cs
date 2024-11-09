@@ -70,11 +70,7 @@ public class HealthManager : MonoBehaviour
             {
                 
                 //make table instead later //hi :3 -emily
-                var rando = Random.Range(1, 4);
-                if (rando == 1) { audioSource.PlayOneShot(breaksound[0], 1.0F); }
-                if (rando == 2) { audioSource.PlayOneShot(breaksound[1], 1.0F); }
-                if (rando == 3) { audioSource.PlayOneShot(breaksound[2], 1.0F); }
-                if (rando == 4) { audioSource.PlayOneShot(breaksound[3], 1.0F); }
+                audioSource.PlayOneShot(breaksound[Random.Range(0, breaksound.Length)], 1.0F);
 
                 collider.gameObject.GetComponent<ParticleSystem>().Play();
                 collider.gameObject.GetComponent<Animator>().SetTrigger("Break");
