@@ -6,6 +6,9 @@ public class InfGen : MonoBehaviour
 {
 
     public GameObject[] genChunks;
+    public int widthMin, widthMax;
+    public int lengthMin, lengthMax;
+
     float chunkWidth;
     float chunkLength;
 
@@ -15,9 +18,15 @@ public class InfGen : MonoBehaviour
 
 
     void OnTriggerEnter (Collider collider) {
+        if (collider.gameObject.CompareTag("Killzone")) {
+            foreach (GameObject chunk in chunkList) {
+                Destroy(chunk);
+            }
+            chunkList.Clear();
+        }
         if (collider.gameObject.CompareTag("Trigger")) {
-            chunkWidth = Random.Range(30, 40);
-            chunkLength = Random.Range(-2, 1);
+            chunkWidth = Random.Range(widthMin, widthMax);
+            chunkLength = Random.Range(lengthMin, lengthMax);
 
             genPosition = collider.transform.position + Vector3.right * chunkWidth + Vector3.up * chunkLength;
 
