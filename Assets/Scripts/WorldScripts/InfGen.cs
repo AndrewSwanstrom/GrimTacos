@@ -10,13 +10,14 @@ public class InfGen : MonoBehaviour
     float chunkLength;
 
     Vector3 genPosition;
+
     List<GameObject> chunkList = new List<GameObject>();
 
 
     void OnTriggerEnter (Collider collider) {
-        if (collider.gameObject.CompareTag("Player")) {
-            chunkWidth = Random.Range(25, 40);
-            chunkLength = Random.Range(-2, 2);
+        if (collider.gameObject.CompareTag("Trigger")) {
+            chunkWidth = Random.Range(25, 30);
+            chunkLength = Random.Range(-2, 1);
 
             genPosition = collider.transform.position + Vector3.right * chunkWidth + Vector3.up * chunkLength;
 

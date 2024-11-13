@@ -839,6 +839,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: trigger
+      value: 
+      objectReference: {fileID: 6217615304330137835, guid: 4fb1d0d1001fb354c9be14beb8b94cfc, type: 3}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: genChunks.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: genChunks.Array.data[0]
+      value: 
+      objectReference: {fileID: 5237948783074686366, guid: dc33946725463964795e7797051b6398, type: 3}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: genChunks.Array.data[1]
+      value: 
+      objectReference: {fileID: 4308112688315853063, guid: 380e7688e87cc1843a349e7cd50c68ee, type: 3}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: genChunks.Array.data[2]
+      value: 
+      objectReference: {fileID: 1725241013172564225, guid: 3f194a35f6ca70248ba3a8bf407da11f, type: 3}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: genChunks.Array.data[3]
+      value: 
+      objectReference: {fileID: 6430447898501143667, guid: c39e51a1bf66b9e4ea60c050a304bbe7, type: 3}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: genChunks.Array.data[4]
+      value: 
+      objectReference: {fileID: 7074330411171908372, guid: a7d7b229b7308de48b1404c1d8d660ad, type: 3}
+    - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      propertyPath: genChunks.Array.data[5]
+      value: 
+      objectReference: {fileID: 4947164439567560284, guid: 27f2d979ec01f964588243eb0694b607, type: 3}
     - target: {fileID: 5395773700967959582, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1027,7 +1059,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2434873198334628780, guid: 3f194a35f6ca70248ba3a8bf407da11f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f194a35f6ca70248ba3a8bf407da11f, type: 3}

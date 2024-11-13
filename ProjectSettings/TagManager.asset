@@ -9,6 +9,7 @@ TagManager:
   - Checkpoint
   - BreakableWall
   - Killzone
+  - Trigger
   layers:
   - Default
   - TransparentFX
