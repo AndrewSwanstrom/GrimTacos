@@ -16,7 +16,7 @@ public class InfGen : MonoBehaviour
 
     void OnTriggerEnter (Collider collider) {
         if (collider.gameObject.CompareTag("Trigger")) {
-            chunkWidth = Random.Range(25, 30);
+            chunkWidth = Random.Range(30, 40);
             chunkLength = Random.Range(-2, 1);
 
             genPosition = collider.transform.position + Vector3.right * chunkWidth + Vector3.up * chunkLength;
@@ -24,13 +24,13 @@ public class InfGen : MonoBehaviour
             GameObject chunkItem = Instantiate(genChunks[Random.Range(0, genChunks.Length)], genPosition, Quaternion.identity);
             chunkList.Add(chunkItem);
 
-            Debug.Log(chunkList.Count);
+            //Debug.Log(chunkList.Count);
         }
         if (chunkList.Count > 5) {
             Destroy(chunkList[0]);
             chunkList.RemoveAt(0);
 
-            Debug.Log("chunk removed");
+            //Debug.Log("chunk removed");
         }
     }
 }
