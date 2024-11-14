@@ -14,7 +14,8 @@ public class InfGen : MonoBehaviour
 
     Vector3 genPosition;
 
-    List<GameObject> chunkList = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> chunkList = new List<GameObject>();
 
 
     void OnTriggerEnter (Collider collider) {
