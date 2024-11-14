@@ -37,6 +37,11 @@ public class HealthManager : MonoBehaviour
 
     private GameObject checkpoint;
 
+    //this is for infgen stuff
+    private bool _genDeath;
+    [HideInInspector]
+    public bool genDeath { get { return _genDeath; } set { _genDeath = value; } }
+
     void Start()
     {
         audioSource = Camera.main.GetComponent<AudioSource>();
@@ -115,6 +120,8 @@ public class HealthManager : MonoBehaviour
                 Hearts[i].gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
                 Hearts[i].transform.Find("BrokenImage").gameObject.SetActive(false);
             }
+
+            _genDeath = true;
         }
     }
 
