@@ -330,6 +330,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1631152237361766450, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
   m_PrefabInstance: {fileID: 1519116848}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &362604542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362604531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa775214a7b5fc42acf670c97c2ba74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclesToSpawn: 1
+  obstacleArray: []
 --- !u!1 &394181660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,7 +1033,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1631152237361766450, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 362604542}
   m_SourcePrefab: {fileID: 100100000, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
 --- !u!1001 &1857077124
 PrefabInstance:
