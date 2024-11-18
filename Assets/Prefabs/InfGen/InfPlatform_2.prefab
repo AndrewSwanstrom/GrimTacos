@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 736343241903269719}
   - component: {fileID: 5532274567145587982}
   - component: {fileID: 2249988949797844525}
+  - component: {fileID: 1438847672380898823}
+  - component: {fileID: 6785658343071904374}
   m_Layer: 0
   m_Name: InfPlatform_2
   m_TagString: Ground
@@ -139,7 +141,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 27.337551, y: 3.3180993, z: 1}
+  m_Size: {x: 25.6, y: 3.3180993, z: 1}
   m_Center: {x: 0.04932213, y: -0.71515834, z: 0}
 --- !u!54 &5532274567145587982
 Rigidbody:
@@ -184,6 +186,52 @@ MonoBehaviour:
   - {fileID: 7391680564267563459, guid: eb81ceb1e8762624bad0945652c06d2f, type: 3}
   - {fileID: 10298271325581290, guid: 4e1b0762e81dd93498689e6a44116146, type: 3}
   - {fileID: 8567911717830393814, guid: 277e949c3dc986843b1ddde74a553ee1, type: 3}
+--- !u!136 &1438847672380898823
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4308112688315853063}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.64
+  m_Height: 4.59
+  m_Direction: 0
+  m_Center: {x: -12.1, y: -0.69, z: 0}
+--- !u!136 &6785658343071904374
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4308112688315853063}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.64
+  m_Height: 4.59
+  m_Direction: 0
+  m_Center: {x: 12.2, y: -0.69, z: 0}
 --- !u!1001 &6510552978298200514
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class InfGenObstacle : MonoBehaviour
         Vector3 target_position = p0 + Random.value * v;
 
         //instantiate a random obstacle from array
-        Instantiate(obstacleArray[Random.Range(0, obstacleArray.Length - 1)], target_position, Quaternion.identity, this.gameObject.transform);
+        Instantiate(obstacleArray[Random.Range(0, obstacleArray.Length)], target_position, Quaternion.identity, this.gameObject.transform);
 
         //}
     }

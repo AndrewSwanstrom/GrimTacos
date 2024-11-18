@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 6388250763006304212}
   - component: {fileID: 1698320924229207473}
   - component: {fileID: 6960754579664716631}
+  - component: {fileID: 4880251760215388829}
+  - component: {fileID: 6680916092149635370}
   m_Layer: 0
   m_Name: InfPlatform_3
   m_TagString: Ground
@@ -184,6 +186,52 @@ MonoBehaviour:
   - {fileID: 7391680564267563459, guid: eb81ceb1e8762624bad0945652c06d2f, type: 3}
   - {fileID: 10298271325581290, guid: 4e1b0762e81dd93498689e6a44116146, type: 3}
   - {fileID: 8567911717830393814, guid: 277e949c3dc986843b1ddde74a553ee1, type: 3}
+--- !u!136 &4880251760215388829
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725241013172564225}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.33
+  m_Height: 4.59
+  m_Direction: 0
+  m_Center: {x: 17.9, y: -0, z: 0}
+--- !u!136 &6680916092149635370
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725241013172564225}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.33
+  m_Height: 4.59
+  m_Direction: 0
+  m_Center: {x: -17.58, y: -0, z: 0}
 --- !u!1001 &8403177155717299681
 PrefabInstance:
   m_ObjectHideFlags: 0

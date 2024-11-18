@@ -934,11 +934,11 @@ PrefabInstance:
       objectReference: {fileID: 6217615304330137835, guid: 4fb1d0d1001fb354c9be14beb8b94cfc, type: 3}
     - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
       propertyPath: widthMax
-      value: 40
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
       propertyPath: widthMin
-      value: 35
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 2474699054488625389, guid: c4277a96f9061e6409091faf7cd492ae, type: 3}
       propertyPath: lengthMax
