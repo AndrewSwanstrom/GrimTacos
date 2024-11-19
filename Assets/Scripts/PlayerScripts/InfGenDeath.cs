@@ -6,11 +6,13 @@ public class InfGenDeath : MonoBehaviour
 {
     InfGen infGen;
     HealthManager healthManager;
+    InfGenScore score;
     // Start is called before the first frame update
     void Start()
     {
         infGen = this.gameObject.GetComponent<InfGen>();
         healthManager = this.gameObject.GetComponent<HealthManager>();
+        score = this.gameObject.GetComponent<InfGenScore>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class InfGenDeath : MonoBehaviour
             }
             infGen.chunkList.Clear();
             healthManager.genDeath = false;
+            score.time = 0;
         }
     }
 }

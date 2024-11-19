@@ -30,6 +30,9 @@ public class InfGen : MonoBehaviour
             chunkLength = Random.Range(lengthMin, lengthMax);
 
             genPosition = collider.transform.position + Vector3.right * chunkWidth + Vector3.up * chunkLength;
+            if (genPosition.y < -1) {
+                genPosition.y = -1;
+            }
 
             GameObject chunkItem = Instantiate(genChunks[Random.Range(0, genChunks.Length)], genPosition, Quaternion.identity);
             chunkList.Add(chunkItem);

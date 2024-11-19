@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 164842336390472036}
   - component: {fileID: 9053737124962876657}
   - component: {fileID: 626738482348375015}
+  - component: {fileID: 2648250315626558955}
+  - component: {fileID: 1409677896084650943}
   m_Layer: 0
   m_Name: InfPlatform_Ramp
   m_TagString: Ground
@@ -54,8 +56,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.784927, y: 1.929058, z: 1}
-  m_Center: {x: 0.41688243, y: 0.040714685, z: 0}
+  m_Size: {x: 7.27, y: 1.929058, z: 1}
+  m_Center: {x: 0.41688243, y: 0.03, z: 0}
 --- !u!54 &626738482348375015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -83,6 +85,52 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &2648250315626558955
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430447898501143667}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.99
+  m_Height: 3.12
+  m_Direction: 0
+  m_Center: {x: -2.66, y: -0, z: 0}
+--- !u!136 &1409677896084650943
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6430447898501143667}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.99
+  m_Height: 3.12
+  m_Direction: 0
+  m_Center: {x: 3.65, y: -0, z: 0}
 --- !u!1 &7542670926812025070
 GameObject:
   m_ObjectHideFlags: 0
