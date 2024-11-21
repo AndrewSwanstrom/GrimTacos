@@ -20,9 +20,13 @@ public class infdeath : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            Time.timeScale = 0;
-            //playerSpeed.maxSpeed = 0;
-            deathScreen.SetActive(true);
+            Death();
         }
+    }
+
+    public void Death() {
+        Time.timeScale = 0;
+        //playerSpeed.maxSpeed = 0;
+        deathScreen.SetActive(true);
     }
 }
