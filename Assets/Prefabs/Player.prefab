@@ -332,7 +332,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   genChunks: []
-  trigger: {fileID: 0}
+  widthMin: 0
+  widthMax: 0
+  lengthMin: 0
+  lengthMax: 0
   chunkList: []
 --- !u!1 &5818143081856908168
 GameObject:
@@ -482,9 +485,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d90c700f87f491b428b456c43df68eda, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
