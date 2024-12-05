@@ -55,7 +55,9 @@ public class TapReader
                 if (tap.phase == TouchPhase.Moved)
                 {
                     lastTouch = tap.position;
+                    if ( (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) && player.GetComponent<HealthManager>().dashing == false) {
                     Movement(); // function that runs if move is strong enough
+                    }
                 }
 
 
@@ -79,6 +81,29 @@ public class TapReader
 
         }
 
+        DashCheck();
+
+    }
+
+    public void Jump()
+    {
+            if (isGrounded < count)
+            {
+                    isGrounded++;
+                    rb.velocity = force * Vector3.up;
+                    Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
+                    playerAnimator.SetTrigger("isJumping");
+            }
+    }
+
+    public void Movement() {
+            touchconnected = false;
+            player.GetComponent<HealthManager>().dashing = true;
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(dashSound, 1.0f);
+            playerAnimator.SetTrigger("isDashing");
+    }
+
+    void DashCheck() {
         if (player.GetComponent<HealthManager>().dashing == true)
         {
 
@@ -91,27 +116,6 @@ public class TapReader
                 dashTimer = 0;
             }
 
-        }
-
-    }
-
-    void Jump()
-    {
-            if (isGrounded < count)
-            {
-                    isGrounded++;
-                    rb.velocity = force * Vector3.up;
-                    Camera.main.GetComponent<AudioSource>().PlayOneShot(skateJump, 1.0f);
-                    playerAnimator.SetTrigger("isJumping");
-            }
-    }
-
-    void Movement() {
-        if ( (Mathf.Abs(lastTouch.x - firstTouch.x) > dragDistance || Mathf.Abs(lastTouch.y - firstTouch.y) > dragDistance) && player.GetComponent<HealthManager>().dashing == false) {
-            touchconnected = false;
-            player.GetComponent<HealthManager>().dashing = true;
-            Camera.main.GetComponent<AudioSource>().PlayOneShot(dashSound, 1.0f);
-            playerAnimator.SetTrigger("isDashing");
         }
     }
 }
