@@ -52,6 +52,7 @@ public class TouchTrigger : MonoBehaviour
     void Update()
     {
         tapScript.Tap();
+        KeyboardControl();
         rb.velocity += new Vector3(1 - ((rb.velocity.x - maxSpeed) / 2), 0, 0);// Vector3.right - (rb.velocity.x - maxSpeed);
 
         if (tapScript.touching == true)
@@ -98,6 +99,15 @@ public class TouchTrigger : MonoBehaviour
             audioSource.time = 0.5f;
             audioSource.PlayOneShot(skateLand, 1.0F);
             animator.SetTrigger("isGrounded");
+        }
+    }
+
+    void KeyboardControl() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            tapScript.Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            tapScript.Movement();
         }
     }
 
