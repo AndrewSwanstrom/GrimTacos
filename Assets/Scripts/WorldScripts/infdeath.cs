@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class infdeath : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject deathScreen;
-    TouchTrigger playerSpeed;
-
-    void Start() {
-        playerSpeed = player.GetComponent<TouchTrigger>();
-    }
+    public GameObject player, deathScreen;
 
     // Update is called once per frame
     void Update()

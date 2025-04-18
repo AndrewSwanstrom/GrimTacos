@@ -6,10 +6,9 @@ using UnityEngine.SceneManagement;
 public class DeathScreen : MonoBehaviour
 {
     public GameObject deathScreen;
-    TouchTrigger player;
 
     void Start() {
-        player = GameObject.Find("Player").GetComponent<TouchTrigger>();
+        deathScreen.SetActive(false);
     }
 
     public void Retry() {
