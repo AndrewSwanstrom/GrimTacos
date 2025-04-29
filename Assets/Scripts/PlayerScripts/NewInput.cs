@@ -82,7 +82,7 @@ public class NewInput : MonoBehaviour
     }
 
     void Swipe(InputAction.CallbackContext context) {
-        if (context.ReadValue<Vector2>().x > 5) {
+        if (healthManager.dashing == false && context.ReadValue<Vector2>().x > 5) {
             healthManager.dashing = true;
             StartCoroutine(Dash());
         }

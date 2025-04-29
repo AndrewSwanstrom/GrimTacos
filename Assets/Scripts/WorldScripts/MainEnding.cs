@@ -9,7 +9,7 @@ public class MainEnding : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            Time.timeScale = 0;
+            other.gameObject.GetComponent<NewInput>().enabled = false;
             endScreen.SetActive(true);
         }
     }
